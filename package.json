@@ -1,0 +1,22 @@
+{
+  "name": "virtual-rubiks-cube-timer",
+  "version": "1.0.0",
+  "description": "A virtual Rubik's Cube with saved times",
+  "main": "app.js",
+  "scripts": {
+    "test": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gargparthb/virtual-rubiks-cube-timer.git"
+  },
+  "author": "Parth Garg",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gargparthb/virtual-rubiks-cube-timer/issues"
+  },
+  "homepage": "https://github.com/gargparthb/virtual-rubiks-cube-timer#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
