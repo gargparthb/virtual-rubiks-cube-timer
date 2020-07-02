@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="style/all.css">
+  <title>Rubiks Cube</title>
+</head>
+
+<body>
+  <div id="container">
+
+    <div id="left-wrapper">
+      <div id="canvas-wrapper"></div>
+      <div id="time-wrapper">
+        <strong>
+          <h2 id="timer-label" style="opacity: 0;">_</h2>
+        </strong>
+      </div>
+    </div>
+
+    <div id="right-wrapper">
+
+      <div id="button-wrapper">
+        <button id="r">R</button>
+        <button id="ri">R'</button>
+        <button id="rw">Rw</button>
+        <button id="rwi">Rw'</button>
+        <button id="l">L</button>
+        <button id="li">L'</button>
+        <button id="lw">Lw</button>
+        <button id="lwi">Lw'</button>
+        <button id="u">U</button>
+        <button id="ui">U'</button>
+        <button id="uw">Uw</button>
+        <button id="uwi">Uw'</button>
+        <button id="d">D</button>
+        <button id="di">D'</button>
+        <button id="dw">Dw</button>
+        <button id="dwi">Dw'</button>
+        <button id="f">F</button>
+        <button id="fi">F'</button>
+        <button id="fw">Fw</button>
+        <button id="fwi">Fw'</button>
+        <button id="b">B</button>
+        <button id="bi">B'</button>
+        <button id="bw">Bw</button>
+        <button id="bwi">Bw'</button>
+        <button id="x">x</button>
+        <button id="xi">x'</button>
+        <button id="y">y</button>
+        <button id="yi">y'</button>
+        <button id="z">z</button>
+        <button id="zi">z'</button>
+        <button id="solver">Solve</button>
+        <button id="scrambler">Scramble</button>
+      </div>
+
+      <h1 id="setting-heading">Settings:</h2>
+
+        <div id="settings-wrapper">
+
+          <div class="setting" id="order-control-wrapper">
+            <div id="slider-wrapper"></div>
+            <div id="order-label-wrapper"></div>
+          </div>
+
+          <div class="setting" id="spd-cube-mode-wrapper">
+            <label class="check-wrapper" for="spd-chkbox">
+              <span class="label-text">Speed Graphics</span>
+              <input type="checkbox" id="spd-chkbox">
+              <span class="checkmark"></span>
+            </label>
+          </div>
+
+          <div class="setting" id="timer-mode-wrapper">
+            <label for="timer-chkbox" class="check-wrapper">
+              <span class="label-text">Timer</span>
+              <input type="checkbox" id="timer-chkbox">
+              <span class="checkmark"></span>
+            </label>
+          </div>
+
+        </div>
+    </div>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.0.0/p5.js"></script>
+  <script src="JS/main.js"></script>
+  <script src="JS/data/move.js"></script>
+  <script src="JS/data/all-moves.js"></script>
+  <script src="JS/data/cubie.js"></script>
+  <script src="JS/data/timer.js"></script>
+  <script src="JS/callbacks/auto-sequencing.js"></script>
+  <script src="JS/callbacks/controls.js"></script>
+  <script src="JS/callbacks/functions.js"></script>
+  <script src="JS/callbacks/inputs.js"></script>
+  <script src="JS/callbacks/draw.js"></script>
+  <script src="JS/callbacks/utilities.js"></script>
+</body>
+
+</html>

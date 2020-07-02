@@ -1,0 +1,229 @@
+#container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row nowrap;
+          flex-flow: row nowrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#container #left-wrapper {
+  width: 50%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column nowrap;
+          flex-flow: column nowrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-top: 0.5em;
+  float: left;
+}
+
+#container #right-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column nowrap;
+          flex-flow: column nowrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  width: 40%;
+  margin-left: 5em;
+  margin-top: 1em;
+  float: right;
+}
+
+#button-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row wrap;
+          flex-flow: row wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#settings-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column wrap;
+          flex-flow: column wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#order-control-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row nowrap;
+          flex-flow: row nowrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#timer-label {
+  margin: 0.5em;
+  color: salmon;
+  font-family: monospace;
+  font-size: 2em;
+}
+
+canvas {
+  border-radius: 10px;
+}
+
+p {
+  font-family: monospace;
+  color: salmon;
+  font-size: x-large;
+  margin: 1em;
+}
+
+#setting-heading {
+  font-family: monospace;
+  color: salmon;
+  margin-top: 1.5em;
+  margin-bottom: 0.5em;
+}
+
+button {
+  background-color: salmon;
+  border-style: solid;
+  border-color: salmon;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  text-align: center;
+  font-family: monospace;
+  font-size: large;
+  padding: 0.5em 1.5em;
+  margin: 0.5em;
+  -webkit-transition: color 0.2s ease-out;
+  transition: color 0.2s ease-out;
+  -webkit-transition: background-color 0.2s ease-out;
+  transition: background-color 0.2s ease-out;
+}
+
+button:hover {
+  color: salmon;
+  background-color: white;
+}
+
+#slider-wrapper {
+  margin-right: 1em;
+}
+
+.setting {
+  margin: 0.5em;
+}
+
+.slider {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  width: 100%;
+  height: 1.5em;
+  border: 1px solid #ededed;
+  background: white;
+  outline: none;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+          appearance: none;
+  appearance: none;
+  width: 1.5em;
+  height: 1.5em;
+  background: salmon;
+  cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+  width: 1.5em;
+  height: 1.5em;
+  background: salmon;
+  cursor: pointer;
+}
+
+.setting {
+  font-family: monospace;
+  color: salmon;
+  font-size: x-large;
+}
+
+.setting .check-wrapper {
+  position: relative;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  cursor: pointer;
+}
+
+.setting .check-wrapper .label-text {
+  margin-left: 1.75em;
+}
+
+.setting .check-wrapper input {
+  opacity: 0;
+}
+
+.setting .check-wrapper input:checked ~ .checkmark {
+  background-color: salmon;
+}
+
+.setting .check-wrapper .checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 1em;
+  width: 1em;
+  background-color: transparent;
+  border: 1px solid #ededed;
+  border-radius: 5px;
+  -webkit-transition: all 0.2s ease-out;
+  transition: all 0.2s ease-out;
+}
+/*# sourceMappingURL=all.css.map */
