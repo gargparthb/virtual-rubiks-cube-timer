@@ -31,7 +31,7 @@ let spdMode = false;
 let timerMode = false;
 let currentTimer; // initializes the timer object
 let currentMove; // initializing move object
-let loggedIn, modalDisplayed;
+let loggedIn, modalDisplayed, modelBtnLabel;
 
 function setup() {
   canvas = createCanvas(windowWidth / 2, windowHeight * 18 / 20, WEBGL);
