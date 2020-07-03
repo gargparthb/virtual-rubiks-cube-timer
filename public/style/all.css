@@ -51,7 +51,6 @@
       align-content: center;
   width: 40%;
   margin-left: 5em;
-  margin-top: 1em;
   float: right;
 }
 
@@ -110,6 +109,55 @@
   font-size: 2em;
 }
 
+#account-wrapper {
+  margin-bottom: 1em;
+}
+
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  width: 50%;
+  height: 50%;
+  background-color: white;
+}
+
+.modal-login {
+  display: none;
+}
+
+.modal-login .modal-content {
+  color: salmon;
+  text-align: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column nowrap;
+          flex-flow: column nowrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.modal-login .modal-content .modal-header {
+  margin-top: 1em;
+}
+
+.modal-login .modal-content .modal-form {
+  margin-top: 5em;
+}
+
+.modal-login .modal-content #submit-name {
+  margin-top: 3em;
+}
+
 canvas {
   border-radius: 10px;
 }
@@ -126,6 +174,17 @@ p {
   color: salmon;
   margin-top: 1.5em;
   margin-bottom: 0.5em;
+}
+
+h1 {
+  color: salmon;
+  text-align: center;
+  font-family: monospace;
+}
+
+label {
+  font-family: monospace;
+  font-size: x-large;
 }
 
 button {

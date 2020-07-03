@@ -21,7 +21,6 @@
         align-content: center
         width: 40%
         margin-left: 5em
-        margin-top: 1em
         float: right
 
 #button-wrapper
@@ -47,3 +46,36 @@
     color: salmon
     font-family: monospace
     font-size: 2em
+
+#account-wrapper
+    margin-bottom: 1em
+
+.modal
+
+    position: fixed
+    top: 50%
+    left: 50%
+    transform: translate(-50%, -50%)
+
+    width: 50%
+    height: 50%
+    background-color: white
+
+.modal-login
+    display: none
+    .modal-content
+        color: salmon
+        text-align: center
+        display: flex
+        flex-flow: column nowrap
+        justify-content: center
+        align-items: center
+
+        .modal-header
+            margin-top: 1em
+
+        .modal-form
+            margin-top: 5em
+
+        #submit-name
+            margin-top: 3em
