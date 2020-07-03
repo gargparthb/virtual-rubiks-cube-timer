@@ -113,51 +113,6 @@
   margin-bottom: 1em;
 }
 
-.modal {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
-  width: 50%;
-  height: 50%;
-  background-color: white;
-}
-
-.modal-login .modal-header {
-  margin-top: 1em;
-}
-
-.modal-login .modal-form {
-  margin-top: 5em;
-}
-
-.modal-login #submit-name {
-  margin-top: 3em;
-}
-
-.modal {
-  display: none;
-}
-
-.modal .modal-content {
-  color: salmon;
-  text-align: center;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-flow: column nowrap;
-          flex-flow: column nowrap;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-
 canvas {
   border-radius: 10px;
 }
@@ -284,5 +239,55 @@ button:hover {
   border-radius: 5px;
   -webkit-transition: all 0.2s ease-out;
   transition: all 0.2s ease-out;
+}
+
+.window-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  text-align: center;
+}
+
+.window-container h1 {
+  font-size: xx-large;
+}
+
+.window-container p {
+  font-size: x-large;
+  margin: 2em;
+}
+
+.window-container form {
+  margin: 2em;
+}
+
+.window-container label {
+  font-family: monospace;
+  color: salmon;
+  margin-right: 0.5em;
+}
+
+.window-container input {
+  margin-right: 2em;
+}
+
+.stats-container {
+  display: none;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row wrap;
+          flex-flow: row wrap;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 /*# sourceMappingURL=all.css.map */

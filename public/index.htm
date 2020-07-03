@@ -91,31 +91,69 @@
     </div>
   </div>
 
-  <div class="modal-login modal">
-    <div class="modal-content">
-      <h1 class="modal-header">Login:</h1>
+  <div class="window-container">
+    <div class="login-container">
+      <h1>Login</h1>
+      <p>If you don't have an account, enter any username and pin to register</p>
+      <form action="login">
+        <label for="">Username:</label>
+        <input type="text">
+        <label for="">Pin:</label>
+        <input type="text">
+      </form>
+      <button id="submit-btn">Submit</button>
+    </div>
 
-      <div class="modal-form">
-        <label for="name">Name:</label>
-        <input type="text" id="name" name="name">
+    <div class="stats-container">
+      <div class="stat-card">
+        <h1>2x2</h1>
+        <p>Best Time: <span class="2best"></span></p>
+        <p>Best Average of 5: <span class="2bestAo5"></span></p>
+        <p>Best Average of 12: <span class="2bestAo12"></span></p>
+        <p>Overall Mean <span class="2mean"></span></p>
       </div>
-
-      <button id="submit-name">Submit</button>
+      <div class="stat-card">
+        <h1>3x3</h1>
+        <p>Best Time: <span class="3best"></span></p>
+        <p>Best Average of 5: <span class="3bestAo5"></span></p>
+        <p>Best Average of 12: <span class="3bestAo12"></span></p>
+        <p>Overall Mean <span class="3mean"></span></p>
+      </div>
+      <div class="stat-card">
+        <h1>4x4</h1>
+        <p>Best Time: <span class="4best"></span></p>
+        <p>Best Average of 5: <span class="4bestAo5"></span></p>
+        <p>Best Average of 12: <span class="4bestAo12"></span></p>
+        <p>Overall Mean <span class="4mean"></span></p>
+      </div>
+      <div class="stat-card">
+        <h1>5x5</h1>
+        <p>Best Time: <span class="5best"></span></p>
+        <p>Best Average of 5: <span class="5bestAo5"></span></p>
+        <p>Best Average of 12: <span class="5bestAo12"></span></p>
+        <p>Overall Mean <span class="5mean"></span></p>
+      </div>
     </div>
-  </div>
 
-  <div class="modal-stats modal">
-    <div class="modal-content">
-      <h1 class="modal-header">Statistics:</h1>
-      <button id="submit-name">Cancel</button>
-    </div>
   </div>
+  <script>
+    let accountBtn = document.querySelector('#account')
+    let accountWindow = document.querySelector('.window-container');
+
+    accountBtn.addEventListener("click", () => accountWindow.scrollIntoView({
+      behavior: "smooth",
+      block: "end",
+      inline: "nearest"
+    }));
+  </script>
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.0.0/p5.js"></script>
   <script src="JS/main.js"></script>
   <script src="JS/data/move.js"></script>
   <script src="JS/data/all-moves.js"></script>
   <script src="JS/data/cubie.js"></script>
   <script src="JS/data/timer.js"></script>
+  <script src="JS/api-calls.js"></script>
   <script src="JS/callbacks/auto-sequencing.js"></script>
   <script src="JS/callbacks/controls.js"></script>
   <script src="JS/callbacks/functions.js"></script>

@@ -2,7 +2,7 @@
 const Datastore = require('nedb');
 
 let db = new Datastore({
-    filename: 'user.db',
+    filename: 'users.db',
     autoload: true
 });
 

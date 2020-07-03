@@ -5,11 +5,11 @@ const router = express.Router();
 const database = require('./database').data;
 
 // get request send all possible matches
-router.get('/api', function (request, response) {
+router.get('/api/:username/:pin', function (request, response) {
     console.log('data requested');
 
-    const _username = request.body.username;
-    const _pin = request.body.pin;
+    const _username = request.params.username;
+    const _pin = request.params.pin;
 
     database.find({
         username: _username,

@@ -31,7 +31,14 @@ let spdMode = false;
 let timerMode = false;
 let currentTimer; // initializes the timer object
 let currentMove; // initializing move object
-let loggedIn, modalDisplayed, modelBtnLabel;
+
+let account = {
+  loggedIn: false,
+  accBtnLabel: 'Login',
+  currentUser: null
+};
+let statContainer, loginContainer;
+let loginBtn, submitBtn;
 
 function setup() {
   canvas = createCanvas(windowWidth / 2, windowHeight * 18 / 20, WEBGL);
@@ -65,6 +72,12 @@ function setup() {
 
   // timer label
   timerLabel = select('#timer-label');
+
+  statContainer = select('.stats-container');
+  loginContainer = select('.login-container');
+
+  loginBtn = select('#account');
+  submitBtn = select('#submit-btn');
 
   // makes cube array
   createCube(order);
