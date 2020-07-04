@@ -142,6 +142,13 @@ label {
   font-size: x-large;
 }
 
+#error {
+  color: #ed0202;
+  display: none;
+  margin-top: -0.5em;
+  margin-bottom: 0.5em;
+}
+
 button {
   background-color: salmon;
   border-style: solid;

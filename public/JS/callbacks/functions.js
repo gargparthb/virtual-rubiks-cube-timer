@@ -111,3 +111,58 @@ function incremenMoveAngle(speed, move) {
         move.angle += 0.1;
     }
 }
+
+function assignButtons() {
+    // giving html buttons functionality by assigning moves
+    R = select('#r').mouseClicked(() => playMove(rMove));
+    Ri = select('#ri').mouseClicked(() => playMove(riMove));
+    Rw = select('#rw').mouseClicked(() => playMove(rMove.makeWide()));
+    Rwi = select('#rwi').mouseClicked(() => playMove(riMove.makeWide()));
+    L = select('#l').mouseClicked(() => playMove(lMove));
+    Li = select('#li').mouseClicked(() => playMove(liMove));
+    Lw = select('#lw').mouseClicked(() => playMove(lMove.makeWide()));
+    Lwi = select('#lwi').mouseClicked(() => playMove(liMove.makeWide()));
+    X = select('#x').mouseClicked(() => playMove(xMove));
+    Xi = select('#xi').mouseClicked(() => playMove(xiMove));
+    U = select('#u').mouseClicked(() => playMove(uMove));
+    Ui = select('#ui').mouseClicked(() => playMove(uiMove));
+    Uw = select('#uw').mouseClicked(() => playMove(uMove.makeWide()));
+    Uwi = select('#uwi').mouseClicked(() => playMove(uiMove.makeWide()));
+    D = select('#d').mouseClicked(() => playMove(dMove));
+    Di = select('#di').mouseClicked(() => playMove(diMove));
+    Dw = select('#dw').mouseClicked(() => playMove(dMove.makeWide()));
+    Dwi = select('#dwi').mouseClicked(() => playMove(diMove.makeWide()));
+    Y = select('#y').mouseClicked(() => playMove(yMove));
+    Yi = select('#yi').mouseClicked(() => playMove(yiMove));
+    F = select('#f').mouseClicked(() => playMove(fMove));
+    Fi = select('#fi').mouseClicked(() => playMove(fiMove));
+    Fw = select('#fw').mouseClicked(() => playMove(fMove.makeWide()));
+    Fwi = select('#fwi').mouseClicked(() => playMove(fiMove.makeWide()));
+    B = select('#b').mouseClicked(() => playMove(bMove));
+    Bi = select('#bi').mouseClicked(() => playMove(biMove));
+    Bw = select('#bw').mouseClicked(() => playMove(bMove.makeWide()));
+    Bwi = select('#bwi').mouseClicked(() => playMove(biMove.makeWide()));
+    Z = select('#z').mouseClicked(() => playMove(zMove));
+    Zi = select('#zi').mouseClicked(() => playMove(ziMove));
+    scrambler = select('#scrambler').mouseClicked(startScramble);
+    solver = select('#solver').mouseClicked(startSolution);
+}
+
+function selectStatSpans() {
+    _2best = select('.2best');
+    _2bestAo5 = select('.2bestAo5');
+    _2bestAo12 = select('.2bestAo12');
+    _2mean = select('.2mean');
+    _3best = select('.3best');
+    _3bestAo5 = select('.3bestAo5');
+    _3bestAo12 = select('.3bestAo12');
+    _3mean = select('.3mean')
+    _4best = select('.4best');
+    _4bestAo5 = select('.4bestAo5');
+    _4bestAo12 = select('.4bestAo12');
+    _4mean = select('.4mean');
+    _5best = select('.5best');
+    _5bestAo5 = select('.5bestAo5');
+    _5bestAo12 = select('.5bestAo12');
+    _5mean = select('.5mean');
+}

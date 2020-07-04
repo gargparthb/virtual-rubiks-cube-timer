@@ -19,6 +19,7 @@ router.get('/api/:username/:pin', function (request, response) {
             response.json({
                 status: 'failed'
             });
+            throw error;
         } else {
             response.json({
                 status: 'success',

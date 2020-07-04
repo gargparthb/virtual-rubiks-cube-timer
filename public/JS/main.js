@@ -11,7 +11,6 @@ let colorDict;
 let order = 3;
 let rangeStart, rangeEnd;
 
-
 // getting HTML elements
 let R, Ri, L, Li, U, Ui, D, Di, F, Fi, B, Bi, X, Xi, Y, Yi, Z, Zi;
 let Rw, Rwi, Lw, Lwi, Uw, Uwi, Dw, Dwi, Fw, Fwi, Bw, Bwi;
@@ -32,13 +31,24 @@ let timerMode = false;
 let currentTimer; // initializes the timer object
 let currentMove; // initializing move object
 
+// account GUI
 let account = {
   loggedIn: false,
   accBtnLabel: 'Login',
   currentUser: null
 };
+
 let statContainer, loginContainer;
 let loginBtn, submitBtn;
+let errorAlert;
+let _2best, _2bestAo5, _2bestAo12, _2mean;
+let _3best, _3bestAo5, _3bestAo12, _3mean;
+let _4best, _4bestAo5, _4bestAo12, _4mean;
+let _5best, _5bestAo5, _5bestAo12, _5mean;
+
+
+let inputs;
+let focused = false;
 
 function setup() {
   canvas = createCanvas(windowWidth / 2, windowHeight * 18 / 20, WEBGL);
@@ -77,44 +87,23 @@ function setup() {
   loginContainer = select('.login-container');
 
   loginBtn = select('#account');
-  submitBtn = select('#submit-btn');
+  submitBtn = select('#submit-btn').mouseClicked(submitCreds);
+
+  inputs = selectAll('input', '#login-form');
+
+  inputs.forEach(element => {
+    element.elt.onfocus = () => focused = true;
+    element.elt.onblur = () => focused = false;
+  });
+
+  errorAlert = select('#error');
+
+  selectStatSpans();
 
   // makes cube array
   createCube(order);
 
-  // giving html buttons functionality by assigning moves
-  R = select('#r').mouseClicked(() => playMove(rMove));
-  Ri = select('#ri').mouseClicked(() => playMove(riMove));
-  Rw = select('#rw').mouseClicked(() => playMove(rMove.makeWide()));
-  Rwi = select('#rwi').mouseClicked(() => playMove(riMove.makeWide()));
-  L = select('#l').mouseClicked(() => playMove(lMove));
-  Li = select('#li').mouseClicked(() => playMove(liMove));
-  Lw = select('#lw').mouseClicked(() => playMove(lMove.makeWide()));
-  Lwi = select('#lwi').mouseClicked(() => playMove(liMove.makeWide()));
-  X = select('#x').mouseClicked(() => playMove(xMove));
-  Xi = select('#xi').mouseClicked(() => playMove(xiMove));
-  U = select('#u').mouseClicked(() => playMove(uMove));
-  Ui = select('#ui').mouseClicked(() => playMove(uiMove));
-  Uw = select('#uw').mouseClicked(() => playMove(uMove.makeWide()));
-  Uwi = select('#uwi').mouseClicked(() => playMove(uiMove.makeWide()));
-  D = select('#d').mouseClicked(() => playMove(dMove));
-  Di = select('#di').mouseClicked(() => playMove(diMove));
-  Dw = select('#dw').mouseClicked(() => playMove(dMove.makeWide()));
-  Dwi = select('#dwi').mouseClicked(() => playMove(diMove.makeWide()));
-  Y = select('#y').mouseClicked(() => playMove(yMove));
-  Yi = select('#yi').mouseClicked(() => playMove(yiMove));
-  F = select('#f').mouseClicked(() => playMove(fMove));
-  Fi = select('#fi').mouseClicked(() => playMove(fiMove));
-  Fw = select('#fw').mouseClicked(() => playMove(fMove.makeWide()));
-  Fwi = select('#fwi').mouseClicked(() => playMove(fiMove.makeWide()));
-  B = select('#b').mouseClicked(() => playMove(bMove));
-  Bi = select('#bi').mouseClicked(() => playMove(biMove));
-  Bw = select('#bw').mouseClicked(() => playMove(bMove.makeWide()));
-  Bwi = select('#bwi').mouseClicked(() => playMove(biMove.makeWide()));
-  Z = select('#z').mouseClicked(() => playMove(zMove));
-  Zi = select('#zi').mouseClicked(() => playMove(ziMove));
-  scrambler = select('#scrambler').mouseClicked(startScramble);
-  solver = select('#solver').mouseClicked(startSolution);
+  assignButtons();
 
   // gives a dummy setup move
   currentMove = new Move();
@@ -122,101 +111,103 @@ function setup() {
 
 // processes key input
 function keyTyped() {
-  switch (key) {
-    case 'i':
-      playMove(rMove);
-      break;
-    case 'k':
-      playMove(riMove);
-      break;
-    case 'u':
-      playMove(rMove.makeWide());
-      break;
-    case 'm':
-      playMove(riMove.makeWide());
-      break;
-    case 'd':
-      playMove(lMove);
-      break;
-    case 'e':
-      playMove(liMove);
-      break;
-    case 'v':
-      playMove(lMove.makeWide());
-      break;
-    case 'r':
-      playMove(liMove.makeWide());
-      break;
-    case 'j':
-      playMove(uMove);
-      break;
-    case 'f':
-      playMove(uiMove);
-      break;
-    case ',':
-      playMove(uMove.makeWide());
-      break;
-    case 'c':
-      playMove(uiMove.makeWide());
-    case 's':
-      playMove(dMove);
-      break;
-    case 'l':
-      playMove(diMove);
-      break;
-    case 'z':
-      playMove(dMove.makeWide());
-      break;
-    case '/':
-      playMove(diMove.makeWide());
-    case 'h':
-      playMove(fMove);
-      break;
-    case 'g':
-      playMove(fiMove);
-      break;
-    case '7':
-      playMove(fMove.makeWide());
-      break;
-    case '4':
-      playMove(fiMove.makeWide());
-      break;
-    case 'w':
-      playMove(bMove);
-      break;
-    case 'o':
-      playMove(biMove);
-      break;
-    case '2':
-      playMove(bMove.makeWide());
-      break;
-    case '9':
-      playMove(biMove.makeWide());
-      break;
-    case 't':
-      playMove(xMove);
-      break;
-    case 'y':
-      playMove(xMove);
-      break;
-    case 'b':
-      playMove(xiMove);
-      break;
-    case 'n':
-      playMove(xiMove);
-      break;
-    case ';':
-      playMove(yMove);
-      break;
-    case 'a':
-      playMove(yiMove)
-      break;
-    case 'p':
-      playMove(zMove);
-      break;
-    case 'q':
-      playMove(ziMove);
-      break;
+  if (!focused) {
+    switch (key) {
+      case 'i':
+        playMove(rMove);
+        break;
+      case 'k':
+        playMove(riMove);
+        break;
+      case 'u':
+        playMove(rMove.makeWide());
+        break;
+      case 'm':
+        playMove(riMove.makeWide());
+        break;
+      case 'd':
+        playMove(lMove);
+        break;
+      case 'e':
+        playMove(liMove);
+        break;
+      case 'v':
+        playMove(lMove.makeWide());
+        break;
+      case 'r':
+        playMove(liMove.makeWide());
+        break;
+      case 'j':
+        playMove(uMove);
+        break;
+      case 'f':
+        playMove(uiMove);
+        break;
+      case ',':
+        playMove(uMove.makeWide());
+        break;
+      case 'c':
+        playMove(uiMove.makeWide());
+      case 's':
+        playMove(dMove);
+        break;
+      case 'l':
+        playMove(diMove);
+        break;
+      case 'z':
+        playMove(dMove.makeWide());
+        break;
+      case '/':
+        playMove(diMove.makeWide());
+      case 'h':
+        playMove(fMove);
+        break;
+      case 'g':
+        playMove(fiMove);
+        break;
+      case '7':
+        playMove(fMove.makeWide());
+        break;
+      case '4':
+        playMove(fiMove.makeWide());
+        break;
+      case 'w':
+        playMove(bMove);
+        break;
+      case 'o':
+        playMove(biMove);
+        break;
+      case '2':
+        playMove(bMove.makeWide());
+        break;
+      case '9':
+        playMove(biMove.makeWide());
+        break;
+      case 't':
+        playMove(xMove);
+        break;
+      case 'y':
+        playMove(xMove);
+        break;
+      case 'b':
+        playMove(xiMove);
+        break;
+      case 'n':
+        playMove(xiMove);
+        break;
+      case ';':
+        playMove(yMove);
+        break;
+      case 'a':
+        playMove(yiMove)
+        break;
+      case 'p':
+        playMove(zMove);
+        break;
+      case 'q':
+        playMove(ziMove);
+        break;
+    }
   }
 }
 
