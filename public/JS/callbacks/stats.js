@@ -9,6 +9,8 @@ function best(array) {
                 return currentValue;
             }
         })
+
+        return target;
     }
 }
 

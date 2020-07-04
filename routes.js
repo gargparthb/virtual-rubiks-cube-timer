@@ -29,6 +29,26 @@ router.get('/api/:username/:pin', function (request, response) {
     });
 });
 
+router.get('/api/:id', function (request, response) {
+    const userID = request.params.id;
+
+    database.find({
+        _id: userID
+    }, function (error, docs) {
+        if (error) {
+            response.json({
+                status: 'failed'
+            });
+            throw error;
+        } else {
+            response.json({
+                status: 'success',
+                users: docs
+            });
+        }
+    });
+});
+
 router.post('/api', function (request, response) {
 
     const newDoc = {
@@ -76,6 +96,8 @@ router.put('/api', function (request, response) {
         }
     });
 
+    database.persistence.compactDatafile();
+
     function updater() {
         switch (_order) {
             case 2:
@@ -119,6 +141,7 @@ router.delete('/api', function (request, response) {
             });
         }
     });
+    database.persistence.compactDatafile();
 });
 
 module.exports = router;

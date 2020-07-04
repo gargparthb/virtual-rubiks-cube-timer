@@ -22,11 +22,56 @@ async function logUser(username, pin) {
 }
 
 async function deleteUser() {
+    const userID = account.currentUser._id;
+    const bodyData = {
+        id: userID
+    };
+
+    const options = {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(bodyData)
+    };
+
+    const request = await fetch('/api', options)
+        .then(() => account.currentUser = {})
+        .then(switchLoginView)
+        .catch(err => console.error(err));
 
 }
 
-async function updateUser() {
+async function updateUser(time, order) {
+    const userID = account.currentUser._id;
 
+    updateBody = {
+        id: userID,
+        time: time,
+        order: order
+    }
+
+    const options = {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(updateBody)
+    };
+
+    const request = await fetch('/api', options)
+        .then(refreshUser)
+        .then(populateStats)
+        .catch(err => console.error(err));
+}
+
+async function refreshUser() {
+    const userID = account.currentUser._id;
+
+    const response = await fetch(`/api/${userID}`);
+    const result = await response.json();
+
+    account.currentUser = result.users[0];
 }
 
 async function submitCreds() {
@@ -86,4 +131,12 @@ function populateStats() {
 function switchAccView() {
     loginContainer.style('display', 'none');
     statContainer.style('display', 'flex');
+    inputs.forEach(element => {
+        element.value('')
+    });
+}
+
+function switchLoginView() {
+    loginContainer.style('display', 'block');
+    statContainer.style('display', 'none');
 }

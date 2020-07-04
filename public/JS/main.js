@@ -39,7 +39,7 @@ let account = {
 };
 
 let statContainer, loginContainer;
-let loginBtn, submitBtn;
+let loginBtn, submitBtn, deleteBtn;
 let errorAlert;
 let _2best, _2bestAo5, _2bestAo12, _2mean;
 let _3best, _3bestAo5, _3bestAo12, _3mean;
@@ -88,6 +88,7 @@ function setup() {
 
   loginBtn = select('#account');
   submitBtn = select('#submit-btn').mouseClicked(submitCreds);
+  deleteBtn = select('.delete-account').mouseClicked(deleteUser)
 
   inputs = selectAll('input', '#login-form');
 
