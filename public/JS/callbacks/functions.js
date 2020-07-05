@@ -166,3 +166,18 @@ function selectStatSpans() {
     _5bestAo12 = select('.5bestAo12');
     _5mean = select('.5mean');
 }
+
+function switchAccView() {
+    loginContainer.style('display', 'none');
+    statContainer.style('display', 'flex');
+    loginBtn.html('Statistics');
+    inputs.forEach(element => {
+        element.value('')
+    });
+}
+
+function switchLoginView() {
+    loginContainer.style('display', 'block');
+    statContainer.style('display', 'none');
+    loginBtn.html('Login');
+}

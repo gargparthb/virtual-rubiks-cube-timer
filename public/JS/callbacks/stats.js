@@ -2,15 +2,13 @@ function best(array) {
     if (array.length == 0) {
         return 'N/A';
     } else {
-        let target = array.reduce(function (accumulator, currentValue) {
-            if (accumulator < currentValue) {
-                return accumulator;
-            } else {
-                return currentValue;
+        let smallest = array.shift();
+        for (item of array) {
+            if (item < smallest) {
+                smallest = item;
             }
-        })
-
-        return target;
+        }
+        return Math.round(smallest * 10) / 10;
     }
 }
 
@@ -24,19 +22,15 @@ function bestAoX(array, x) {
         }
     }
 
-    if (averages.includes(null)) {
-        return 'N/A';
-    } else {
-        return best(averages);
-    }
+    return best(averages.filter(value => value != null));
 }
 
 function aoX(array, x) {
-    let target = array;
+    let target = array.slice(0);
     target.sort((a, b) => a < b);
     target.shift();
     target.pop();
-    return target.reduce((acc, cv) => acc + cv) / (x - 2);
+    return (target.reduce((acc, cv) => acc + cv) / (x - 2)).toFixed(1);
 }
 
 function mean(arr) {

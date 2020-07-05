@@ -48,6 +48,10 @@ class Timer {
             } else {
                 if (solved(cube)) {
                     // displays final state
+                    if (account.loggedIn) {
+                        updateUser(Math.round(10 * this.time) / 10, order);
+                    }
+
                     this.timing = false;
                     clearInterval(this.timeInterval);
                     this.finished = true;

@@ -16,9 +16,9 @@ async function logUser(username, pin) {
         body: JSON.stringify(newUserData)
     }
 
-    fetch('/api', options)
+    const fetchedData = await fetch('/api', options)
         .catch(err => console.error(err));
-    return newUserData;
+    return fetchedData;
 }
 
 async function deleteUser() {
@@ -35,11 +35,12 @@ async function deleteUser() {
         body: JSON.stringify(bodyData)
     };
 
-    const request = await fetch('/api', options)
+    const fetchedData = await fetch('/api', options)
         .then(() => account.currentUser = {})
         .then(switchLoginView)
         .catch(err => console.error(err));
 
+    return fetchedData;
 }
 
 async function updateUser(time, order) {
@@ -59,19 +60,19 @@ async function updateUser(time, order) {
         body: JSON.stringify(updateBody)
     };
 
-    const request = await fetch('/api', options)
-        .then(refreshUser)
-        .then(populateStats)
-        .catch(err => console.error(err));
+    const fetchedData = await fetch('/api', options);
+    refreshUser().then(populateStats);
+
+    return fetchedData;
 }
 
 async function refreshUser() {
-    const userID = account.currentUser._id;
+    const fetchedData = await fetch(`/api/${account.currentUser._id}`)
+        .then(result => result.json())
+        .then(data => account.currentUser = data.users[0]);
 
-    const response = await fetch(`/api/${userID}`);
-    const result = await response.json();
+    return fetchedData;
 
-    account.currentUser = result.users[0];
 }
 
 async function submitCreds() {
@@ -99,7 +100,6 @@ async function submitCreds() {
         }
 
         account.loggedIn = true;
-        account.accBtnLabel = 'Statistics';
         loginBtn.html(account.accBtnLabel);
         populateStats();
         switchAccView();
@@ -126,17 +126,4 @@ function populateStats() {
     _5bestAo5.html(bestAoX(account.currentUser.x5times, 5));
     _5bestAo12.html(bestAoX(account.currentUser.x5times, 12));
     _5mean.html(mean(account.currentUser.x5times));
-}
-
-function switchAccView() {
-    loginContainer.style('display', 'none');
-    statContainer.style('display', 'flex');
-    inputs.forEach(element => {
-        element.value('')
-    });
-}
-
-function switchLoginView() {
-    loginContainer.style('display', 'block');
-    statContainer.style('display', 'none');
 }

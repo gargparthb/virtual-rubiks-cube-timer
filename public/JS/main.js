@@ -1,55 +1,6 @@
 // WEBGL Rubik's Cube created by Parth Garg during the Great Quarantine of 2020
 // make with p5.js   
 
-// defines all the program/environment variables
-
-// initializes the array and colors
-let cube = [];
-let colorDict;
-
-// setting dimensions
-let order = 3;
-let rangeStart, rangeEnd;
-
-// getting HTML elements
-let R, Ri, L, Li, U, Ui, D, Di, F, Fi, B, Bi, X, Xi, Y, Yi, Z, Zi;
-let Rw, Rwi, Lw, Lwi, Uw, Uwi, Dw, Dwi, Fw, Fwi, Bw, Bwi;
-let scrambler, solver;
-let canvas;
-let slider, orderLabel, spdModeChkBox, timerChkBox, timerLabel;
-
-// moves
-let rMove, riMove, lMove, liMove;
-let uMove, uiMove, dMove, diMove;
-let fMove, fiMove, bMove, biMove;
-let xMove, xiMove, yMove, yiMove, zMove, ziMove;
-
-// environment variables
-let len, stickerOffset;
-let spdMode = false;
-let timerMode = false;
-let currentTimer; // initializes the timer object
-let currentMove; // initializing move object
-
-// account GUI
-let account = {
-  loggedIn: false,
-  accBtnLabel: 'Login',
-  currentUser: null
-};
-
-let statContainer, loginContainer;
-let loginBtn, submitBtn, deleteBtn;
-let errorAlert;
-let _2best, _2bestAo5, _2bestAo12, _2mean;
-let _3best, _3bestAo5, _3bestAo12, _3mean;
-let _4best, _4bestAo5, _4bestAo12, _4mean;
-let _5best, _5bestAo5, _5bestAo12, _5mean;
-
-
-let inputs;
-let focused = false;
-
 function setup() {
   canvas = createCanvas(windowWidth / 2, windowHeight * 18 / 20, WEBGL);
   // allows styling
@@ -63,7 +14,7 @@ function setup() {
   initializeColorDict();
 
   // adding slider
-  slider = createSlider(1, 5, 3, 1)
+  slider = createSlider(2, 5, 3, 1)
     .parent('slider-wrapper')
     .addClass('slider')
     .input(newCube);
@@ -88,7 +39,7 @@ function setup() {
 
   loginBtn = select('#account');
   submitBtn = select('#submit-btn').mouseClicked(submitCreds);
-  deleteBtn = select('.delete-account').mouseClicked(deleteUser)
+  deleteBtn = select('.delete-account').mouseClicked(deleteUser);
 
   inputs = selectAll('input', '#login-form');
 
@@ -213,7 +164,7 @@ function keyTyped() {
 }
 
 function keyPressed() {
-  if (keyCode == SHIFT && timerMode) {
+  if (keyCode == SHIFT && timerMode && !focused) {
     createCube(order)
     generateScramble();
     autoAnimating = true;

@@ -38,8 +38,8 @@ router.get('/api/:id', function (request, response) {
         if (error) {
             response.json({
                 status: 'failed'
-            });
-            throw error;
+            })
+            throw err;
         } else {
             response.json({
                 status: 'success',
