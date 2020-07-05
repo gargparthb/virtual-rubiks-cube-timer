@@ -3,6 +3,11 @@ function newCube() {
     // prevents cross algorithms
     autoAnimating = false;
     createCube(this.value());
+
+    if (timerMode) {
+        currentTimer.clear();
+    }
+
     // updates label
     orderLabel.html(this.value() + 'x' + this.value());
 }

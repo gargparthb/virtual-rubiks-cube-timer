@@ -94,4 +94,16 @@ class Timer {
         this.updateTimer();
         this.drawTimer();
     }
+
+    clear() {
+        if (this.inspecting) {
+            clearInterval(this.inspectionInterval);
+            this.inspecting = false;
+        } else {
+            clearInterval(this.timeInterval);
+            this.timing = false;
+        }
+
+        this.drawTimer();
+    }
 }
