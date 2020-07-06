@@ -21,5 +21,5 @@ Also includes an account system that can be used to save times.
 -   Keyboard and Button controls
 -   Multiple Graphics Options
 
-![Cube Screenshot](assets/cube-screenshot.png 'Title')
-![Speed Cube Screenshot](assets/spd-cube-screenshot.png 'Title')
+![Cube Screenshot](public/assets/cube-screenshot.png 'Title')
+![Speed Cube Screenshot](public/assets/spd-cube-screenshot.png 'Title')
