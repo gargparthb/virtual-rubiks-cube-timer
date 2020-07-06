@@ -4,7 +4,8 @@
     "description": "A virtual Rubik's Cube with saved times",
     "main": "app.js",
     "scripts": {
-        "start": "nodemon app.js"
+        "start": "nodemon app.js",
+        "test": "jest"
     },
     "repository": {
         "type": "git",
@@ -21,6 +22,7 @@
         "nedb": "^1.8.0"
     },
     "devDependencies": {
-        "jest": "^26.1.0"
+        "chai": "^4.2.0",
+        "mocha": "^8.0.1"
     }
 }

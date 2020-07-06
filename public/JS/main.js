@@ -63,6 +63,11 @@ function setup() {
 
     // gives a dummy setup move
     currentMove = new Move();
+
+    autoSequence = [
+        new Move(true, 'x', [rangeStart], 1, 0),
+        new Move(true, 'y', [rangeStart], 1, 0),
+    ];
 }
 
 // processes key input

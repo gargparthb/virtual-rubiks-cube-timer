@@ -41,3 +41,8 @@ let _5best, _5bestAo5, _5bestAo12, _5mean;
 
 let inputs;
 let focused = false;
+
+// auto sequencing variables
+let autoSequence;
+let history = [];
+let autoAnimating = false;
