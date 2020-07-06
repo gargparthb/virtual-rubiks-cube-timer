@@ -4,143 +4,133 @@ const express = require('express');
 const router = express.Router();
 const database = require('./database').data;
 
-// get request send all possible matches
-router.get('/api/:username/:pin', function (request, response) {
-    console.log('data requested');
+router.get('/api/:name/:password', function (request, response) {
+    const username = request.params.name;
+    const password = request.params.password;
 
-    const _username = request.params.username;
-    const _pin = request.params.pin;
-
-    database.find({
-        username: _username,
-        pin: _pin
-    }, function (error, docs) {
-        if (error) {
-            response.json({
-                status: 'failed'
-            });
-            throw error;
-        } else {
-            response.json({
+    database.find({ username: username, password: password }, function (
+        error,
+        docs
+    ) {
+        if (!error) {
+            response.send({
                 status: 'success',
-                users: docs
+                users: docs,
+            });
+        } else {
+            response.send({
+                status: 'failed',
             });
         }
     });
 });
 
-router.get('/api/:id', function (request, response) {
-    const userID = request.params.id;
+router.get('api/:id', function (request, response) {
+    const id = request.params.id;
 
-    database.find({
-        _id: userID
-    }, function (error, docs) {
-        if (error) {
-            response.json({
-                status: 'failed'
-            })
-            throw err;
-        } else {
-            response.json({
+    database.find({ _id: id }, function (error, docs) {
+        if (!error) {
+            response.send({
                 status: 'success',
-                users: docs
+                users: docs,
+            });
+        } else {
+            response.send({
+                status: 'failed',
             });
         }
     });
 });
 
 router.post('/api', function (request, response) {
+    const username = request.body.username;
+    const password = request.body.password;
 
     const newDoc = {
-        username: request.body.username,
-        pin: request.body.pin,
-        x2times: request.body.x2times,
-        x3times: request.body.x3times,
-        x4times: request.body.x4times,
-        x5times: request.body.x5times
+        username: username,
+        password: password,
+        x2times: [],
+        x3times: [],
+        x4times: [],
+        x5times: [],
     };
 
-    database.insert(newDoc, function (error, newDoc) {
-        if (error) {
-            response.json({
-                status: 'failed'
-            });
-        } else {
+    database.insert(newDoc, function (err, doc) {
+        if (!err) {
             response.json({
                 status: 'success',
-                user: newDoc
+                added: doc,
             });
-        }
-    });
-});
-
-router.put('/api', function (request, response) {
-    const userID = request.body.id;
-    const _time = request.body.time;
-    const _order = request.body.order;
-
-    database.update({
-        _id: userID
-    }, {
-        $push: updater()
-    }, {}, function (err, numAffected) {
-        if (err) {
+        } else {
             response.json({
                 status: 'failed',
-            });
-        } else {
-            response.json({
-                status: 'success',
-                updatedEntries: numAffected
             });
         }
     });
 
     database.persistence.compactDatafile();
+});
 
-    function updater() {
-        switch (_order) {
+router.put('/api', function (request, response) {
+    const time = request.body.time;
+    const order = request.body.order;
+    const id = request.body.id;
+
+    database.update(
+        { _id: id },
+        { $push: getUpdaterObj(time, order) },
+        { returnUpdatedDocs: true },
+        function (err, numAffected, affectedDocs) {
+            if (!err) {
+                response.json({
+                    status: 'success',
+                    numAffected: numAffected,
+                    affected: affectedDocs,
+                });
+            } else {
+                response.json({
+                    status: 'failed',
+                });
+            }
+        }
+    );
+
+    function getUpdaterObj(result, order) {
+        switch (order) {
             case 2:
-                return {
-                    x2times: _time
-                };
+                return { x2times: result };
                 break;
             case 3:
-                return {
-                    x3times: _time
-                };
+                return { x3times: result };
                 break;
             case 4:
-                return {
-                    x4times: _time
-                };
+                return { x4times: result };
                 break;
             case 5:
-                return {
-                    x5times: _time
-                };
+                return { x5times: result };
                 break;
         }
     }
+
+    database.persistence.compactDatafile();
 });
 
 router.delete('/api', function (request, response) {
-    const userID = request.body.id;
+    const id = request.body.id;
 
-    database.remove({
-        _id: userID
-    }, {}, function (err, numRemoved) {
-        if (err) {
+    database.remove({ _id: id }, {}, function (err, numRemoved) {
+        if (!err) {
             response.json({
-                status: 'failed',
+                status: 'success',
+                numRemoved: numRemoved,
             });
         } else {
             response.json({
-                status: 'success',
-                deletedEntries: numRemoved
+                status: 'failed',
             });
         }
     });
+
     database.persistence.compactDatafile();
 });
 

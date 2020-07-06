@@ -19,7 +19,7 @@ class Timer {
     drawTimer() {
         // draws the timer data onto interface
         if (timerMode) {
-            timerLabel.style('opacity', '1')
+            timerLabel.style('opacity', '1');
             if (autoAnimating) {
                 timerLabel.html('Scrambling...');
             } else if (this.inspecting) {
@@ -27,7 +27,9 @@ class Timer {
             } else if (this.timing) {
                 timerLabel.html(displayTime(this.time));
             } else if (this.finished) {
-                timerLabel.html(displayTime(this.time) + ' - Press shift to time again.');
+                timerLabel.html(
+                    displayTime(this.time) + ' - Press shift to time again.'
+                );
             } else {
                 timerLabel.html('Press shift to time.');
             }
@@ -48,14 +50,18 @@ class Timer {
             } else {
                 if (solved(cube)) {
                     // displays final state
-                    if (account.loggedIn) {
+                    if (currentUser != null) {
                         updateUser(Math.round(10 * this.time) / 10, order);
                     }
 
+                    // changed fields to allow for static times
                     this.timing = false;
                     clearInterval(this.timeInterval);
                     this.finished = true;
                     this.drawTimer();
+
+                    // re-enables the slider
+                    slider.elt.disabled = false;
                 } else {
                     this.time += 0.1;
                 }
@@ -66,7 +72,10 @@ class Timer {
     timeSolve() {
         // performs timing in correct order
         this.drawTimer();
-        waitFor(() => autoAnimating == false, this.countdownInspection.bind(this));
+        waitFor(
+            () => autoAnimating == false,
+            this.countdownInspection.bind(this)
+        );
         waitFor(() => this.timing, this.stopwatch.bind(this));
     }
 
@@ -81,7 +90,10 @@ class Timer {
         // creates the interval that counts down
         this.inspecting = true;
         this.drawTimer();
-        this.inspectionInterval = setInterval(this.refreshTime.bind(this), 1000);
+        this.inspectionInterval = setInterval(
+            this.refreshTime.bind(this),
+            1000
+        );
     }
 
     stopwatch() {
@@ -92,18 +104,6 @@ class Timer {
 
     refreshTime() {
         this.updateTimer();
-        this.drawTimer();
-    }
-
-    clear() {
-        if (this.inspecting) {
-            clearInterval(this.inspectionInterval);
-            this.inspecting = false;
-        } else {
-            clearInterval(this.timeInterval);
-            this.timing = false;
-        }
-
         this.drawTimer();
     }
 }

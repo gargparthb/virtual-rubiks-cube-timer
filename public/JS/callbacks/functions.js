@@ -4,10 +4,6 @@ function newCube() {
     autoAnimating = false;
     createCube(this.value());
 
-    if (timerMode) {
-        currentTimer.clear();
-    }
-
     // updates label
     orderLabel.html(this.value() + 'x' + this.value());
 }
@@ -64,34 +60,39 @@ function finishAutoSequence() {
     // animating flag
     autoAnimating = false;
     // orginal dummy moves
-    autoSequence.push(new Move(true, 'x', [1], 1, 0), new Move(true, 'y', [1], 1, 0));
+    autoSequence.push(
+        new Move(true, 'x', [1], 1, 0),
+        new Move(true, 'y', [1], 1, 0)
+    );
 }
 
 // checks to see if cube is solved
 function solved() {
-    let visible = visibleQbs(cube)
+    let visible = visibleQbs(cube);
     let reference = visible[0].colors;
     let cMap = [];
 
-    cMap.push(uniformLayerColor(visible, 'y', rangeStart, 0, reference),
+    cMap.push(
+        uniformLayerColor(visible, 'y', rangeStart, 0, reference),
         uniformLayerColor(visible, 'y', rangeEnd, 1, reference),
         uniformLayerColor(visible, 'z', rangeEnd, 2, reference),
         uniformLayerColor(visible, 'z', rangeStart, 3, reference),
         uniformLayerColor(visible, 'x', rangeStart, 4, reference),
-        uniformLayerColor(visible, 'x', rangeEnd, 5, reference));
+        uniformLayerColor(visible, 'x', rangeEnd, 5, reference)
+    );
 
-    return cMap.every(i => i);
+    return cMap.every((i) => i);
 }
 
 // isolates and matches a layer's color to reference
 function uniformLayerColor(qbs, axis, layer, side, reference) {
     let target = qbs
         // collects layer cubies
-        .filter(qb => qb[axis] == layer)
+        .filter((qb) => qb[axis] == layer)
         // gets the side colors
-        .map(qb => qb.colors[side])
+        .map((qb) => qb.colors[side])
         // compares all the side colors
-        .every(c => equalColors(c, reference[side]))
+        .every((c) => equalColors(c, reference[side]));
     return target;
 }
 
@@ -153,6 +154,7 @@ function assignButtons() {
     solver = select('#solver').mouseClicked(startSolution);
 }
 
+// assigns environment variables to the stats spans
 function selectStatSpans() {
     _2best = select('.2best');
     _2bestAo5 = select('.2bestAo5');
@@ -161,7 +163,7 @@ function selectStatSpans() {
     _3best = select('.3best');
     _3bestAo5 = select('.3bestAo5');
     _3bestAo12 = select('.3bestAo12');
-    _3mean = select('.3mean')
+    _3mean = select('.3mean');
     _4best = select('.4best');
     _4bestAo5 = select('.4bestAo5');
     _4bestAo12 = select('.4bestAo12');
@@ -176,8 +178,8 @@ function switchAccView() {
     loginContainer.style('display', 'none');
     statContainer.style('display', 'flex');
     loginBtn.html('Statistics');
-    inputs.forEach(element => {
-        element.value('')
+    inputs.forEach((element) => {
+        element.value('');
     });
 }
 

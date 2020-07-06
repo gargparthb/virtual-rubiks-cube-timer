@@ -50,9 +50,12 @@ function generateSolution() {
   }
 }
 
+// optimizes the generated algorithm
 function cancel(moves) {
+  // gives the target array with first move
   target = moves.splice(0, 1);
 
+  // goes through moves while cancel direct inverses
   for (move of moves) {
     if (move.inverse(last(target))) {
       target.pop();
@@ -61,6 +64,7 @@ function cancel(moves) {
     }
   }
 
+  // looks for three equal moves
   for (let i = target.length - 1; i >= 0; i--) {
     if (target[i].equal(target[i - 1]) && target[i - 1].equal(target[i - 2])) {
       target[i].dir *= -1;

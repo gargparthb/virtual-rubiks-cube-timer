@@ -29,19 +29,15 @@ let currentTimer; // initializes the timer object
 let currentMove; // initializing move object
 
 // account GUI
-let account = {
-    loggedIn: false,
-    currentUser: null
-};
+let currentUser = null;
 
 let statContainer, loginContainer;
-let loginBtn, submitBtn, deleteBtn;
+let loginBtn, submitBtn, deleteBtn, logoutBtn;
 let errorAlert;
 let _2best, _2bestAo5, _2bestAo12, _2mean;
 let _3best, _3bestAo5, _3bestAo12, _3mean;
 let _4best, _4bestAo5, _4bestAo12, _4mean;
 let _5best, _5bestAo5, _5bestAo12, _5mean;
-
 
 let inputs;
 let focused = false;

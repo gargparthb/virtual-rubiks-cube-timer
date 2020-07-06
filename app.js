@@ -7,9 +7,11 @@ const api = require('./routes');
 // starts listening
 app.listen(port, () => console.log(`listening to port: ${port}`));
 
-app.use(express.static('public'));
+// serving the public
 app.use(express.json({
     limit: '1mb'
 }));
+
+app.use('/', express.static(__dirname + '/public'));
 
 app.use('/', api);

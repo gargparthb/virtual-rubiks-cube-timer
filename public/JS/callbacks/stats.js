@@ -1,8 +1,9 @@
+// returns the smallest value in array
 function best(array) {
     if (array.length == 0) {
         return 'N/A';
     } else {
-        let smallest = array.shift();
+        let smallest = array[0];
         for (item of array) {
             if (item < smallest) {
                 smallest = item;
@@ -12,6 +13,7 @@ function best(array) {
     }
 }
 
+// finds the best cubing average of x
 function bestAoX(array, x) {
     let averages = [];
     for (let i = 0; i < array.length - 1; i++) {
@@ -22,9 +24,10 @@ function bestAoX(array, x) {
         }
     }
 
-    return best(averages.filter(value => value != null));
+    return best(averages.filter((value) => value != null));
 }
 
+// aox helper
 function aoX(array, x) {
     let target = array.slice(0);
     target.sort((a, b) => a < b);
