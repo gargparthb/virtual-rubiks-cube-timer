@@ -52,7 +52,7 @@ class Timer {
                 if (solved(cube)) {
                     // displays final state
                     if (currentUser != null) {
-                        updateUser(Math.round(10 * this.time) / 10, );
+                        updateUser(Math.round(10 * this.time) / 10, order);
                     }
 
                     // changed fields to allow for static times

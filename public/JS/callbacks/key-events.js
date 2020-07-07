@@ -103,7 +103,7 @@ function keyMove(key) {
 
 // SHIFT function isn't in KeyTyped
 function checkTimerStart(keyCode) {
-    if (keyCode == SHIFT && timerMode && !focused) {
+    if (keyCode == SHIFT && timerMode && !focused && !autoAnimating) {
         // blocks changing the order, during a timed solve
         slider.elt.disabled = true;
 
