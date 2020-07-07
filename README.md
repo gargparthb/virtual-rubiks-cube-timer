@@ -6,6 +6,7 @@ Also includes an account system that can be used to save times.
 ## Built With:
 
 -   p5.js
+-   p5.EasyCam
 -   Node JS
 -   Express
 -   neDB

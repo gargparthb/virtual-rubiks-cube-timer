@@ -137,7 +137,7 @@ function assignButtons() {
     Uwi = select('#uwi').mouseClicked(() => playMove(uiMove.makeWide()));
     D = select('#d').mouseClicked(() => playMove(dMove));
     Di = select('#di').mouseClicked(() => playMove(diMove));
-    Dw = select('#dw').mouseClicked(() => playMove(dMove.makeWide()));
+    _Dw = select('#dw').mouseClicked(() => playMove(dMove.makeWide()));
     Dwi = select('#dwi').mouseClicked(() => playMove(diMove.makeWide()));
     Y = select('#y').mouseClicked(() => playMove(yMove));
     Yi = select('#yi').mouseClicked(() => playMove(yiMove));
@@ -173,6 +173,14 @@ function selectStatSpans() {
     _5bestAo5 = select('.5bestAo5');
     _5bestAo12 = select('.5bestAo12');
     _5mean = select('.5mean');
+}
+
+// gives the database buttons event listeners
+function crudButtons() {
+    loginBtn = select('#account');
+    logoutBtn = select('.logout').mouseClicked(logout);
+    submitBtn = select('#submit-btn').mouseClicked(loginUser);
+    deleteBtn = select('.delete-account').mouseClicked(deleteUser);
 }
 
 // goes from the login to the account stats DOM elements

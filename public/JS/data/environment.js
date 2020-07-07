@@ -4,13 +4,16 @@
 let cube = [];
 let colorDict;
 
+// Easy Cam Object
+let camera;
+
 // setting dimensions
 let order = 3;
 let rangeStart, rangeEnd;
 
 // getting HTML elements
 let R, Ri, L, Li, U, Ui, D, Di, F, Fi, B, Bi, X, Xi, Y, Yi, Z, Zi;
-let Rw, Rwi, Lw, Lwi, Uw, Uwi, Dw, Dwi, Fw, Fwi, Bw, Bwi;
+let Rw, Rwi, Lw, Lwi, Uw, Uwi, _Dw, Dwi, Fw, Fwi, Bw, Bwi;
 let scrambler, solver;
 let canvas;
 let slider, orderLabel, spdModeChkBox, timerChkBox, timerLabel;
@@ -31,6 +34,7 @@ let currentMove; // initializing move object
 // account GUI
 let currentUser = null;
 
+// login DOM elements
 let statContainer, loginContainer;
 let loginBtn, submitBtn, deleteBtn, logoutBtn;
 let errorAlert;

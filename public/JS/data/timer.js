@@ -52,7 +52,7 @@ class Timer {
                 if (solved(cube)) {
                     // displays final state
                     if (currentUser != null) {
-                        updateUser(Math.round(10 * this.time) / 10, order);
+                        updateUser(Math.round(10 * this.time) / 10, );
                     }
 
                     // changed fields to allow for static times
@@ -71,7 +71,7 @@ class Timer {
     }
 
     timeSolve() {
-        // performs timing in correct order
+        // performs timing in correct 
         this.drawTimer();
         // first wait for inspection to finish the start stopwatch
         waitFor(

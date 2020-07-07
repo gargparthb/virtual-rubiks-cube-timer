@@ -6,6 +6,8 @@ function setup() {
     // allows styling
     canvas.parent('canvas-wrapper');
 
+    camera = createEasyCam();
+
     // initilizing drawing variables
     calculateLen();
     calculateStickerOffset();
@@ -13,21 +15,11 @@ function setup() {
     // initial color order
     initializeColorDict();
 
-    // adding slider
-    slider = createSlider(2, 5, 3, 1)
-        .parent('slider-wrapper')
-        .addClass('slider')
-        .input(newCube);
+    // gets and sets the slider functions
+    initializeSlider()
 
-    // the label of order
-    orderLabel = createP(slider.value() + 'x' + slider.value()).parent(
-        'order-label-wrapper'
-    );
-
-    // spd mode box
+    // checkboxes
     spdModeChkBox = select('#spd-chkbox').changed(toggleMode);
-
-    // timer checkbox
     timerChkBox = select('#timer-chkbox').changed(toggleTimer);
 
     // timer label
@@ -38,10 +30,7 @@ function setup() {
     loginContainer = select('.login-container');
 
     // CRUD buttons
-    loginBtn = select('#account');
-    logoutBtn = select('.logout').mouseClicked(logout);
-    submitBtn = select('#submit-btn').mouseClicked(loginUser);
-    deleteBtn = select('.delete-account').mouseClicked(deleteUser);
+    crudButtons();
 
     // the login fields
     inputs = selectAll('input', '#login-form');
@@ -66,127 +55,9 @@ function setup() {
 
     // gives a dummy setup move
     currentMove = new Move();
-}
 
-// processes key input
-function keyTyped() {
-    // doesn't process if user is typing inside the login box
-    if (!focused) {
-        switch (key) {
-            case 'i':
-                playMove(rMove);
-                break;
-            case 'k':
-                playMove(riMove);
-                break;
-            case 'u':
-                playMove(rMove.makeWide());
-                break;
-            case 'm':
-                playMove(riMove.makeWide());
-                break;
-            case 'd':
-                playMove(lMove);
-                break;
-            case 'e':
-                playMove(liMove);
-                break;
-            case 'v':
-                playMove(lMove.makeWide());
-                break;
-            case 'r':
-                playMove(liMove.makeWide());
-                break;
-            case 'j':
-                playMove(uMove);
-                break;
-            case 'f':
-                playMove(uiMove);
-                break;
-            case ',':
-                playMove(uMove.makeWide());
-                break;
-            case 'c':
-                playMove(uiMove.makeWide());
-            case 's':
-                playMove(dMove);
-                break;
-            case 'l':
-                playMove(diMove);
-                break;
-            case 'z':
-                playMove(dMove.makeWide());
-                break;
-            case '/':
-                playMove(diMove.makeWide());
-            case 'h':
-                playMove(fMove);
-                break;
-            case 'g':
-                playMove(fiMove);
-                break;
-            case '7':
-                playMove(fMove.makeWide());
-                break;
-            case '4':
-                playMove(fiMove.makeWide());
-                break;
-            case 'w':
-                playMove(bMove);
-                break;
-            case 'o':
-                playMove(biMove);
-                break;
-            case '2':
-                playMove(bMove.makeWide());
-                break;
-            case '9':
-                playMove(biMove.makeWide());
-                break;
-            case 't':
-                playMove(xMove);
-                break;
-            case 'y':
-                playMove(xMove);
-                break;
-            case 'b':
-                playMove(xiMove);
-                break;
-            case 'n':
-                playMove(xiMove);
-                break;
-            case ';':
-                playMove(yMove);
-                break;
-            case 'a':
-                playMove(yiMove);
-                break;
-            case 'p':
-                playMove(zMove);
-                break;
-            case 'q':
-                playMove(ziMove);
-                break;
-        }
-    }
-}
-
-// SHIFT function isn't in KeyTyped
-function keyPressed() {
-    if (keyCode == SHIFT && timerMode && !focused) {
-        // blocks changing the order, during a timed solve
-        slider.elt.disabled = true;
-
-        // solves the cube
-        createCube(order);
-
-        // scramables
-        generateScramble();
-        autoAnimating = true;
-
-        // starts the timed solve
-        currentTimer = new Timer();
-        currentTimer.timeSolve();
+    document.oncontextmenu = function () {
+        return false;
     }
 }
 
@@ -198,14 +69,21 @@ function windowResized() {
     calculateStickerOffset();
 }
 
+// processes key input
+function keyTyped() {
+    keyMove(key);
+}
+
+// SHIFT function isn't in KeyTyped
+function keyPressed() {
+    checkTimerStart(keyCode);
+}
+
 // main draw loop
 function draw() {
 
     // nice salmon background color
     background(250, 128, 114);
-
-    // allows user pan
-    orbitControl();
 
     // gives better view depending on spd mode variable
     setView();
