@@ -37,6 +37,7 @@ function last(array) {
     return array[array.length - 1];
 }
 
+// waits for a flag to change and then execute a function
 function waitFor(condition, callback) {
     if (!condition()) {
         setTimeout(waitFor.bind(null, condition, callback), 10);

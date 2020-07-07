@@ -37,11 +37,13 @@ function setup() {
     statContainer = select('.stats-container');
     loginContainer = select('.login-container');
 
+    // CRUD buttons
     loginBtn = select('#account');
     logoutBtn = select('.logout').mouseClicked(logout);
     submitBtn = select('#submit-btn').mouseClicked(loginUser);
     deleteBtn = select('.delete-account').mouseClicked(deleteUser);
 
+    // the login fields
     inputs = selectAll('input', '#login-form');
 
     // allows to type in inputs without moving cube
@@ -50,6 +52,7 @@ function setup() {
         element.elt.onblur = () => (focused = false);
     });
 
+    // the possible alert in case of invalid login inputs
     errorAlert = select('#error');
 
     // gets the stats UI's
@@ -67,6 +70,7 @@ function setup() {
 
 // processes key input
 function keyTyped() {
+    // doesn't process if user is typing inside the login box
     if (!focused) {
         switch (key) {
             case 'i':
@@ -167,9 +171,10 @@ function keyTyped() {
     }
 }
 
+// SHIFT function isn't in KeyTyped
 function keyPressed() {
     if (keyCode == SHIFT && timerMode && !focused) {
-        // blocks changing the order
+        // blocks changing the order, during a timed solve
         slider.elt.disabled = true;
 
         // solves the cube
@@ -179,7 +184,7 @@ function keyPressed() {
         generateScramble();
         autoAnimating = true;
 
-        // times
+        // starts the timed solve
         currentTimer = new Timer();
         currentTimer.timeSolve();
     }
@@ -196,12 +201,13 @@ function windowResized() {
 // main draw loop
 function draw() {
 
+    // nice salmon background color
     background(250, 128, 114);
 
     // allows user pan
     orbitControl();
 
-    // gives better view
+    // gives better view depending on spd mode variable
     setView();
 
     // checks if an auto sequence is finished
@@ -209,6 +215,7 @@ function draw() {
         finishAutoSequence();
     }
 
+    // draws an auto move
     if (autoAnimating) {
         // pulling out move
         let autoMove = autoSequence[0];
@@ -222,6 +229,8 @@ function draw() {
 
         // draws each qb of array with the auto rotation
         autoMove.drawCube(cube);
+
+        // draw a user move
     } else {
         // does the above for the user moves
         if (currentMove.animating) {
@@ -233,6 +242,7 @@ function draw() {
             currentMove.end();
         }
 
+        // draws the qbs
         currentMove.drawCube(cube);
     }
 }

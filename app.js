@@ -7,13 +7,15 @@ const api = require('./routes');
 // starts listening
 app.listen(port, () => console.log(`listening to port: ${port}`));
 
-// serving the public
+// allows json responses
 app.use(
     express.json({
         limit: '1mb',
     })
 );
 
+// serves the static content
 app.use('/', express.static(__dirname + '/public'));
 
+// process the CRUD requests
 app.use('/', api);

@@ -39,5 +39,6 @@ let _3best, _3bestAo5, _3bestAo12, _3mean;
 let _4best, _4bestAo5, _4bestAo12, _4mean;
 let _5best, _5bestAo5, _5bestAo12, _5mean;
 
+// the login inputs
 let inputs;
 let focused = false;

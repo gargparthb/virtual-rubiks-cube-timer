@@ -73,6 +73,7 @@ function solved() {
     let cMap = [];
 
     cMap.push(
+        // looks at one face at a time
         uniformLayerColor(visible, 'y', rangeStart, 0, reference),
         uniformLayerColor(visible, 'y', rangeEnd, 1, reference),
         uniformLayerColor(visible, 'z', rangeEnd, 2, reference),
@@ -174,6 +175,7 @@ function selectStatSpans() {
     _5mean = select('.5mean');
 }
 
+// goes from the login to the account stats DOM elements
 function switchAccView() {
     loginContainer.style('display', 'none');
     statContainer.style('display', 'flex');
@@ -183,6 +185,7 @@ function switchAccView() {
     });
 }
 
+// reverse of the above
 function switchLoginView() {
     loginContainer.style('display', 'block');
     statContainer.style('display', 'none');

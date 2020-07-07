@@ -81,12 +81,15 @@ class Move {
         }
     }
 
+    // is the move animation over
     doneAnimating() {
         return this.angle >= PI / 2;
     }
 
     // allows for rotations during timed inspection
+    // checks if the move is a whole rotation
     isRotation() {
+        // accounts for invisible layer
         if (order % 2 == 0) {
             return this.layers.length == order + 1;
         } else {

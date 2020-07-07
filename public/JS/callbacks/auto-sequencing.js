@@ -57,8 +57,10 @@ function generateSolution() {
 
 // optimizes the generated algorithm
 function cancel(moves) {
+    // fold on to this array
     target = moves.splice(0, 1);
 
+    // first loop checks for two consecutive inverse moves
     for (move of moves) {
         if (move.inverse(last(target))) {
             target.pop();
@@ -68,8 +70,10 @@ function cancel(moves) {
     }
 
 
+    // the next loop checks for three consecutive equal moves and then reverse one and deletes two
     if (target.length > 2) {
 
+        // another array to fold on to
         let final = target.splice(0, 2)
 
         for (move of target) {

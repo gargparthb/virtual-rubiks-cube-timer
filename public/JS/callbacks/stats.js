@@ -9,7 +9,7 @@ function best(array) {
                 smallest = item;
             }
         }
-        return Math.round(smallest * 10) / 10;
+        return displayTime(Math.round(smallest * 10) / 10);
     }
 }
 
@@ -36,11 +36,12 @@ function aoX(array, x) {
     return (target.reduce((acc, cv) => acc + cv) / (x - 2)).toFixed(1);
 }
 
+// finds arithmetic mean
 function mean(arr) {
     if (arr.length == 0) {
         return 'N/A';
     } else {
-        return (arr.reduce(reducer) / arr.length).toFixed(1);
+        return displayTime((arr.reduce(reducer) / arr.length));
     }
 
     function reducer(a, b) {

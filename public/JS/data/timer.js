@@ -45,6 +45,7 @@ class Timer {
                 if (this.inspectCounter <= 0) {
                     this.endInspection();
                 } else {
+                    // countdown
                     this.inspectCounter--;
                 }
             } else {
@@ -72,6 +73,7 @@ class Timer {
     timeSolve() {
         // performs timing in correct order
         this.drawTimer();
+        // first wait for inspection to finish the start stopwatch
         waitFor(
             () => autoAnimating == false,
             this.countdownInspection.bind(this)
@@ -102,6 +104,7 @@ class Timer {
         this.timeInterval = setInterval(this.refreshTime.bind(this), 100);
     }
 
+    // moves to the next state
     refreshTime() {
         this.updateTimer();
         this.drawTimer();
