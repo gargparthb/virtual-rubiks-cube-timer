@@ -57,5 +57,3 @@ function displayTime(n) {
         return `${mins}:${secs.toFixed(1)}`;
     }
 }
-
-module.exports = { last };

@@ -1,3 +1,8 @@
+// auto sequencing variables
+let autoSequence = [new Move(true, 'x', [rangeStart], 1, 0), new Move(true, 'y', [rangeStart], 1, 0)];
+let history = [];
+let autoAnimating = false;
+
 function randomAxis() {
     return random(['x', 'y', 'z']);
 }
@@ -52,10 +57,8 @@ function generateSolution() {
 
 // optimizes the generated algorithm
 function cancel(moves) {
-    // gives the target array with first move
     target = moves.splice(0, 1);
 
-    // goes through moves while cancel direct inverses
     for (move of moves) {
         if (move.inverse(last(target))) {
             target.pop();
@@ -64,18 +67,27 @@ function cancel(moves) {
         }
     }
 
-    // looks for three equal moves
-    for (let i = target.length - 1; i >= 0; i--) {
-        if (
-            target[i].equal(target[i - 1]) &&
-            target[i - 1].equal(target[i - 2])
-        ) {
-            target[i].dir *= -1;
-            target.splice(i - 2, 2);
+
+    if (target.length > 2) {
+
+        let final = target.splice(0, 2)
+
+        for (move of target) {
+            if (final[final.length - 2].equal(last(final)) &&
+                last(final).equal(move)) {
+
+                final.pop();
+                last(final).dir *= -1;
+            } else {
+                final.push(move)
+            }
         }
+
+        return final;
     }
 
     return target;
+
 }
 
 // starts auto sequence
@@ -85,5 +97,3 @@ function startSolution() {
         autoAnimating = true;
     }
 }
-
-module.exports = { cancel };

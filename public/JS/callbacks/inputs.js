@@ -8,7 +8,7 @@ function toggleTimer() {
     timerMode = this.checked();
 
     if (timerMode) {
-        currentTimer = new Timer;
+        currentTimer = new Timer();
     }
 
     currentTimer.drawTimer();

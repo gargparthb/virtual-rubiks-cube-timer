@@ -134,4 +134,4 @@ router.delete('/api', function (request, response) {
     database.persistence.compactDatafile();
 });
 
-module.exports = { router };
+module.exports = router;
