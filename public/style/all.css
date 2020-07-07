@@ -122,6 +122,10 @@ p {
   color: salmon;
   font-size: x-large;
   margin: 1em;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }
 
 #setting-heading {
@@ -135,6 +139,10 @@ h1 {
   color: salmon;
   text-align: center;
   font-family: monospace;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }
 
 label {
@@ -149,6 +157,13 @@ label {
   margin-bottom: 0.5em;
 }
 
+#timer-label {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
 button {
   background-color: salmon;
   border-style: solid;
@@ -156,6 +171,10 @@ button {
   border-radius: 5px;
   color: white;
   cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
   text-align: center;
   font-family: monospace;
   font-size: large;

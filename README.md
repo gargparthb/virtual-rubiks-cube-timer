@@ -5,11 +5,11 @@ Also includes an account system that can be used to save times.
 
 ## Built With:
 
--   p5.js
--   p5.EasyCam
--   Node JS
--   Express
--   neDB
+-   p5.js(https://p5js.org/)
+-   p5.EasyCam(https://github.com/freshfork/p5.EasyCam)
+-   Node JS(https://nodejs.org/en/)
+-   Express(https://expressjs.com/)
+-   neDB(https://github.com/louischatriot/nedb)
 
 ## Features:
 
@@ -21,6 +21,8 @@ Also includes an account system that can be used to save times.
 -   Database storage of Times
 -   Keyboard and Button controls
 -   Multiple Graphics Options
+
+## Screenshots;
 
 ![Cube Screenshot](assets/cube-screenshot.png 'Title')
 ![Speed Cube Screenshot](assets/speed-mode-cube-screenshot.png 'Title')

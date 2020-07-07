@@ -104,8 +104,9 @@ function keyMove(key) {
 // SHIFT function isn't in KeyTyped
 function checkTimerStart(keyCode) {
     if (keyCode == SHIFT && timerMode && !focused && !autoAnimating) {
-        // blocks changing the order, during a timed solve
+        // blocks changing the order and timer mode during a timed solve
         slider.elt.disabled = true;
+        timerChkBox.elt.disabled = true;
 
         // solves the cube
         createCube(order);

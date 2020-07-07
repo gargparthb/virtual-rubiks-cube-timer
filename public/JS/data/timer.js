@@ -63,6 +63,7 @@ class Timer {
 
                     // re-enables the slider
                     slider.elt.disabled = false;
+                    timerChkBox.elt.disabled = false;
                 } else {
                     this.time += 0.1;
                 }
