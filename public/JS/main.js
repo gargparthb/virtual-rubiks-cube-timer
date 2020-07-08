@@ -1,13 +1,15 @@
 // WEBGL Rubik's Cube created by Parth Garg during the Great Quarantine of 2020
 // make with p5.js
 
+// calling all the p5.js environment functions 
+
 function setup() {
     canvas = createCanvas(windowWidth / 2, (windowHeight * 18) / 20, WEBGL);
     // allows styling
     canvas.parent('canvas-wrapper');
 
     // uses a nice camera rather than default
-    camera = createEasyCam();
+    createEasyCam();
 
     // initilizing drawing variables
     calculateLen();
@@ -44,6 +46,10 @@ function setup() {
 
     // gives the move buttons callbacks
     assignButtons();
+
+    autoSequence = [
+        new Move(true, 'x', [rangeStart], 1, 0), new Move(true, 'y', [rangeStart], 1, 0)
+    ];
 
     document.oncontextmenu = (() => false);
 }
@@ -84,11 +90,11 @@ function draw() {
     if (autoAnimating) {
         // draws the first move in the auto sequence array
         drawMoveSequence(autoSequence, true);
-    } else if (userMoves[0] != undefined) {
+    } else if (userMoves.length > 0) {
         // draws the first move in the user move array
         drawMoveSequence(userMoves, spdMode);
     } else {
-        // draws the cube with a dummy move
-        new Move(false, 'x', [0], 1, 0).drawCube(cube);
+        // draws the cube
+        cube.forEach(qb => qb.draw());
     }
 }

@@ -4,9 +4,6 @@
 let cube = [];
 let colorDict;
 
-// Easy Cam Object
-let camera;
-
 // setting dimensions
 let order = 3;
 let rangeStart, rangeEnd;
@@ -30,6 +27,9 @@ let spdMode = false;
 let timerMode = false;
 let currentTimer; // initializes the timer object
 let userMoves = []; // where the user inputs their moves
+let history = [];
+let autoSequence;
+let autoAnimating = false;
 
 // account GUI
 let currentUser = null;

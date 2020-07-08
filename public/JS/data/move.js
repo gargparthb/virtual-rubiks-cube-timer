@@ -14,22 +14,9 @@ class Move {
 
     // updates cube data
     execute() {
-        switch (this.axis) {
-            case 'x':
-                for (let l of this.layers) {
-                    twistX(l, this.dir, cube);
-                }
-                break;
-            case 'y':
-                for (let l of this.layers) {
-                    twistY(l, this.dir, cube);
-                }
-                break;
-            case 'z':
-                for (let l of this.layers) {
-                    twistZ(l, this.dir, cube);
-                }
-        }
+        this.layers.forEach(l => {
+            eval(`twist${this.axis.toUpperCase()}`)(l, this.dir, cube);
+        });
         return this;
     }
 
@@ -56,7 +43,7 @@ class Move {
 
     // turns the move into the outer two layers
     makeWide() {
-        if (this.layers[0] > 0) {
+        if (this.layers[0] >= 0) {
             return new Move(
                 true,
                 this.axis,
@@ -103,7 +90,7 @@ class Move {
             history = [];
         } else {
             // adds move copy object
-            history.push(Object.assign({}, this));
+            history.push(this);
         }
 
         return this;
@@ -153,9 +140,9 @@ class Move {
     // changes the angle given the speed, true for fast
     incrementAngle(speed) {
         if (speed) {
-            this.angle += 0.2
+            this.angle += 0.25;
         } else {
-            this.angle += 0.1
+            this.angle += 0.1;
         }
     }
 }

@@ -46,18 +46,13 @@ function createCube(n) {
 // updates moving variable with user's, as long as no other move is occuring
 function playMove(move) {
     if (!autoAnimating) {
-        userMoves.push(convertToMove(Object.assign({}, move)));
+        userMoves.push(move);
 
         // starts timer on move in inspection
         if (timerMode && !move.isRotation()) {
             currentTimer.endInspection();
         }
     }
-}
-
-// turns regular object into a Move instance
-function convertToMove(obj) {
-    return new Move(obj.animating, obj.axis, obj.layers, obj.dir, obj.angle);
 }
 
 // checks to see if cube is solved
@@ -76,6 +71,7 @@ function solved() {
         uniformLayerColor(visible, 'x', rangeEnd, 5, reference)
     );
 
+    // andmaps the faces
     return cMap.every((i) => i);
 }
 

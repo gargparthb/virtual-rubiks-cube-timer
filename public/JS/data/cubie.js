@@ -16,8 +16,8 @@ class Cubie {
         // don't draw on the invisable layer on even ordered
         if (!this.inInvisibleLayer()) {
             // the offsets from the center of the mini-cube
-            const nDist = (-1 * len) / 2 - 1;
             const pDist = len / 2 + 1;
+            const nDist = -pDist;
 
             push();
             // even cubes need to be offset to account of invisable layer

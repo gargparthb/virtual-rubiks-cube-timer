@@ -1,12 +1,3 @@
-// auto sequencing variables
-let autoSequence = [
-    new Move(true, 'x', [rangeStart], 1, 0),
-    new Move(true, 'y', [rangeStart], 1, 0)
-];
-
-let history = [];
-let autoAnimating = false;
-
 function randomAxis() {
     return random(['x', 'y', 'z']);
 }
@@ -110,7 +101,7 @@ function finishAutoSequence() {
     autoAnimating = false;
     // orginal dummy moves
     autoSequence.push(
-        new Move(true, 'x', [1], 1, 0),
-        new Move(true, 'y', [1], 1, 0)
+        new Move(true, 'x', [rangeEnd], 1, 0),
+        new Move(true, 'y', [rangeEnd], 1, 0)
     );
 }

@@ -38,6 +38,7 @@ function keyMove(key) {
                 break;
             case 'c':
                 playMove(uiMove.makeWide());
+                break;
             case 's':
                 playMove(dMove);
                 break;
@@ -49,6 +50,7 @@ function keyMove(key) {
                 break;
             case '/':
                 playMove(diMove.makeWide());
+                break;
             case 'h':
                 playMove(fMove);
                 break;
@@ -103,7 +105,10 @@ function keyMove(key) {
 
 // SHIFT function isn't in KeyTyped
 function checkTimerStart(keyCode) {
-    if (keyCode == SHIFT && timerMode && !focused && !autoAnimating) {
+    if (keyCode == SHIFT &&
+        timerMode &&
+        !focused &&
+        !autoAnimating) {
         // blocks changing the order and timer mode during a timed solve
         slider.elt.disabled = true;
         timerChkBox.elt.disabled = true;
