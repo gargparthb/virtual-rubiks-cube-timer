@@ -6,6 +6,7 @@ function setup() {
     // allows styling
     canvas.parent('canvas-wrapper');
 
+    // uses a nice camera rather than default
     camera = createEasyCam();
 
     // initilizing drawing variables
@@ -32,17 +33,8 @@ function setup() {
     // CRUD buttons
     crudButtons();
 
-    // the login fields
-    inputs = selectAll('input', '#login-form');
-
-    // allows to type in inputs without moving cube
-    inputs.forEach((element) => {
-        element.elt.onfocus = () => (focused = true);
-        element.elt.onblur = () => (focused = false);
-    });
-
-    // the possible alert in case of invalid login inputs
-    errorAlert = select('#error');
+    // gets and add functionality to form elements
+    initializeLoginForm();
 
     // gets the stats UI's
     selectStatSpans();
@@ -53,12 +45,7 @@ function setup() {
     // gives the move buttons callbacks
     assignButtons();
 
-    // gives a dummy setup move
-    currentMove = new Move();
-
-    document.oncontextmenu = function () {
-        return false;
-    }
+    document.oncontextmenu = (() => false);
 }
 
 // reponsive web design
@@ -95,32 +82,13 @@ function draw() {
 
     // draws an auto move
     if (autoAnimating) {
-        // pulling out move
-        let autoMove = autoSequence[0];
-        incremenMoveAngle(true, autoMove);
-
-        if (autoMove.doneAnimating()) {
-            // switching through the auto sequence and saving move for history
-            autoMove.resetAngle().execute().updateHistory();
-            autoSequence.shift();
-        }
-
-        // draws each qb of array with the auto rotation
-        autoMove.drawCube(cube);
-
-        // draw a user move
+        // draws the first move in the auto sequence array
+        drawMoveSequence(autoSequence, true);
+    } else if (userMoves[0] != undefined) {
+        // draws the first move in the user move array
+        drawMoveSequence(userMoves, spdMode);
     } else {
-        // does the above for the user moves
-        if (currentMove.animating) {
-            incremenMoveAngle(spdMode, currentMove);
-        }
-
-        // checks if the move is done animating
-        if (currentMove.doneAnimating()) {
-            currentMove.end();
-        }
-
-        // draws the qbs
-        currentMove.drawCube(cube);
+        // draws the cube with a dummy move
+        new Move(false, 'x', [0], 1, 0).drawCube(cube);
     }
 }

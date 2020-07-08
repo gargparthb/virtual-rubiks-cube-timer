@@ -29,7 +29,7 @@ let len, stickerOffset;
 let spdMode = false;
 let timerMode = false;
 let currentTimer; // initializes the timer object
-let currentMove; // initializing move object
+let userMoves = []; // where the user inputs their moves
 
 // account GUI
 let currentUser = null;

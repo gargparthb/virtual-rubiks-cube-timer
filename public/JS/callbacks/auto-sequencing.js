@@ -1,5 +1,9 @@
 // auto sequencing variables
-let autoSequence = [new Move(true, 'x', [rangeStart], 1, 0), new Move(true, 'y', [rangeStart], 1, 0)];
+let autoSequence = [
+    new Move(true, 'x', [rangeStart], 1, 0),
+    new Move(true, 'y', [rangeStart], 1, 0)
+];
+
 let history = [];
 let autoAnimating = false;
 
@@ -69,7 +73,6 @@ function cancel(moves) {
         }
     }
 
-
     // the next loop checks for three consecutive equal moves and then reverse one and deletes two
     if (target.length > 2) {
 
@@ -91,7 +94,6 @@ function cancel(moves) {
     }
 
     return target;
-
 }
 
 // starts auto sequence
@@ -100,4 +102,15 @@ function startSolution() {
         generateSolution();
         autoAnimating = true;
     }
+}
+
+// ends the auto-sequence and adds back the dummy moves
+function finishAutoSequence() {
+    // animating flag
+    autoAnimating = false;
+    // orginal dummy moves
+    autoSequence.push(
+        new Move(true, 'x', [1], 1, 0),
+        new Move(true, 'y', [1], 1, 0)
+    );
 }

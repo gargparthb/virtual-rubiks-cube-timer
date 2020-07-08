@@ -45,8 +45,8 @@ function createCube(n) {
 
 // updates moving variable with user's, as long as no other move is occuring
 function playMove(move) {
-    if (!autoAnimating && !currentMove.animating) {
-        Object.assign(currentMove, move);
+    if (!autoAnimating) {
+        userMoves.push(convertToMove(Object.assign({}, move)));
 
         // starts timer on move in inspection
         if (timerMode && !move.isRotation()) {
@@ -55,15 +55,9 @@ function playMove(move) {
     }
 }
 
-// ends the auto-sequence and adds back the dummy moves
-function finishAutoSequence() {
-    // animating flag
-    autoAnimating = false;
-    // orginal dummy moves
-    autoSequence.push(
-        new Move(true, 'x', [1], 1, 0),
-        new Move(true, 'y', [1], 1, 0)
-    );
+// turns regular object into a Move instance
+function convertToMove(obj) {
+    return new Move(obj.animating, obj.axis, obj.layers, obj.dir, obj.angle);
 }
 
 // checks to see if cube is solved
@@ -113,10 +107,27 @@ function visibleQbs(array) {
 // increments the moving layer's angle
 function incremenMoveAngle(speed, move) {
     if (speed) {
-        move.angle += 0.3;
+        move.angle += 0.2;
     } else {
         move.angle += 0.1;
     }
+}
+
+function drawMoveSequence(sequence, speed) {
+    // pulls out the focus move
+    let focusMove = sequence[0];
+
+    // turns the layer
+    focusMove.incrementAngle(speed);
+
+    // handles the full turn
+    if (focusMove.doneAnimating()) {
+        focusMove.end();
+        sequence.shift();
+    }
+
+    // draws with the angle
+    focusMove.drawCube(cube);
 }
 
 function assignButtons() {
@@ -198,4 +209,19 @@ function switchLoginView() {
     loginContainer.style('display', 'block');
     statContainer.style('display', 'none');
     loginBtn.html('Login');
+}
+
+// gets and initializes the login form elements
+function initializeLoginForm() {
+    // the login fields
+    inputs = selectAll('input', '#login-form');
+
+    // allows to type in inputs without moving cube
+    inputs.forEach((element) => {
+        element.elt.onfocus = () => (focused = true);
+        element.elt.onblur = () => (focused = false);
+    });
+
+    // the possible alert in case of invalid login inputs
+    errorAlert = select('#error');
 }

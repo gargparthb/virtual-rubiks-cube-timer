@@ -34,12 +34,6 @@ class Move {
     }
 
     // mostly for chaining
-    toggleAnimation() {
-        this.animating = !this.animating;
-        return this;
-    }
-
-    // mostly for chaining
     resetAngle() {
         this.angle = 0;
         return this;
@@ -99,7 +93,7 @@ class Move {
 
     // ends and logs the move
     end() {
-        this.toggleAnimation().resetAngle().execute().updateHistory();
+        this.resetAngle().execute().updateHistory();
     }
 
     // adds the move to the history array
@@ -153,6 +147,15 @@ class Move {
             );
         } else {
             return false;
+        }
+    }
+
+    // changes the angle given the speed, true for fast
+    incrementAngle(speed) {
+        if (speed) {
+            this.angle += 0.2
+        } else {
+            this.angle += 0.1
         }
     }
 }

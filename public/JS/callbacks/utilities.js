@@ -33,6 +33,7 @@ function allNumsBetween(n, m) {
     return result;
 }
 
+// returns the last item of the array
 function last(array) {
     return array[array.length - 1];
 }
