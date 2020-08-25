@@ -112,6 +112,7 @@ function checkTimerStart(keyCode) {
         // blocks changing the order and timer mode during a timed solve
         slider.elt.disabled = true;
         timerChkBox.elt.disabled = true;
+        inspecChkBox.elt.disabled = true;
 
         // solves the cube
         createCube(order);

@@ -64,6 +64,7 @@ class Timer {
                     // re-enables the slider
                     slider.elt.disabled = false;
                     timerChkBox.elt.disabled = false;
+                    inspecChkBox.elt.disabled = false;
                 } else {
                     this.time += 0.1;
                 }
@@ -75,11 +76,21 @@ class Timer {
         // performs timing in correct 
         this.drawTimer();
         // first wait for inspection to finish the start stopwatch
-        waitFor(
-            () => autoAnimating == false,
-            this.countdownInspection.bind(this)
-        );
-        waitFor(() => this.timing, this.stopwatch.bind(this));
+        if (inspecChkBox.checked()) {
+            waitFor(
+                () => autoAnimating == false,
+                this.countdownInspection.bind(this)
+            );
+            waitFor(() => this.timing, this.stopwatch.bind(this));
+        } else {
+            waitFor(
+                () => autoAnimating == false,
+                function () {
+                    this.timing = true;
+                    this.stopwatch.bind(this);
+                }.bind(this)
+            );
+        }
     }
 
     endInspection() {

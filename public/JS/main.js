@@ -24,6 +24,7 @@ function setup() {
     // checkboxes
     spdModeChkBox = select('#spd-chkbox').changed(toggleMode);
     timerChkBox = select('#timer-chkbox').changed(toggleTimer);
+    inspecChkBox = select('#inspec-chkbox');
 
     // timer label
     timerLabel = select('#timer-label');

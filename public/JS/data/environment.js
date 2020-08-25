@@ -16,7 +16,7 @@ let R, Ri, L, Li, U, Ui, D, Di, F, Fi, B, Bi, X, Xi, Y, Yi, Z, Zi;
 let Rw, Rwi, Lw, Lwi, Uw, Uwi, _Dw, Dwi, Fw, Fwi, Bw, Bwi;
 let scrambler, solver, camReset;
 let canvas;
-let slider, orderLabel, spdModeChkBox, timerChkBox, timerLabel;
+let slider, orderLabel, spdModeChkBox, timerChkBox, inspecChkBox, timerLabel;
 
 // moves
 let rMove, riMove, lMove, liMove;
