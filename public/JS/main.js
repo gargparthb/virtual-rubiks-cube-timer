@@ -9,7 +9,7 @@ function setup() {
     canvas.parent('canvas-wrapper');
 
     // uses a nice camera rather than default
-    createEasyCam();
+    cam = createEasyCam();
 
     // initilizing drawing variables
     calculateLen();
@@ -35,6 +35,9 @@ function setup() {
     // CRUD buttons
     crudButtons();
 
+    // reset camera button
+    camReset = select('#camera-reset').mouseClicked(() => cam.reset());
+
     // gets and add functionality to form elements
     initializeLoginForm();
 
@@ -47,11 +50,10 @@ function setup() {
     // gives the move buttons callbacks
     assignButtons();
 
+    // dummy scrambles moves
     autoSequence = [
         new Move(true, 'x', [rangeStart], 1, 0), new Move(true, 'y', [rangeStart], 1, 0)
     ];
-
-    document.oncontextmenu = (() => false);
 }
 
 // reponsive web design

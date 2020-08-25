@@ -4,6 +4,9 @@
 let cube = [];
 let colorDict;
 
+// the overall 3D camera
+let cam;
+
 // setting dimensions
 let order = 3;
 let rangeStart, rangeEnd;
@@ -11,7 +14,7 @@ let rangeStart, rangeEnd;
 // getting HTML elements
 let R, Ri, L, Li, U, Ui, D, Di, F, Fi, B, Bi, X, Xi, Y, Yi, Z, Zi;
 let Rw, Rwi, Lw, Lwi, Uw, Uwi, _Dw, Dwi, Fw, Fwi, Bw, Bwi;
-let scrambler, solver;
+let scrambler, solver, camReset;
 let canvas;
 let slider, orderLabel, spdModeChkBox, timerChkBox, timerLabel;
 

@@ -1,6 +1,7 @@
-// changes spd mode on check
+// changes spd mode on check and resets the camera to new view
 function toggleMode() {
     spdMode = this.checked();
+    cam.reset();
 }
 
 // toggles the timer
