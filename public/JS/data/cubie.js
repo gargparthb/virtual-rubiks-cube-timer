@@ -15,9 +15,6 @@ class Cubie {
     draw() {
         // don't draw on the invisable layer on even ordered
         if (!this.inInvisibleLayer()) {
-            // the offsets from the center of the mini-cube
-            const pDist = len / 2 + 1;
-            const nDist = -pDist;
 
             push();
             // even cubes need to be offset to account of invisable layer
@@ -40,63 +37,55 @@ class Cubie {
             // draws each sticker induvidually
 
             // TOP
-            if (this.y == rangeStart) {
-                push();
-                translate(0, nDist, 0);
-                fill(this.colors[0]);
-                rotateX(PI / 2);
-                plane(len - stickerOffset, len - stickerOffset, 2);
-                pop();
-            }
+            this.drawSticker('y', -1, this.colors[0]);
 
             // BOTTOM
-            if (this.y == rangeEnd) {
-                push();
-                translate(0, pDist, 0);
-                fill(this.colors[1]);
-                rotateX(PI / 2);
-                plane(len - stickerOffset, len - stickerOffset, 2);
-                pop();
-            }
+            this.drawSticker('y', 1, this.colors[1]);
 
             // FRONT
-            if (this.z == rangeEnd) {
-                push();
-                translate(0, 0, pDist);
-                fill(this.colors[2]);
-                plane(len - stickerOffset, len - stickerOffset, 2);
-                pop();
-            }
+            this.drawSticker('z', 1, this.colors[2]);
 
             // BACK
-            if (this.z == rangeStart) {
-                push();
-                translate(0, 0, nDist);
-                fill(this.colors[3]);
-                plane(len - stickerOffset, len - stickerOffset, 2);
-                pop();
-            }
+            this.drawSticker('z', -1, this.colors[3]);
 
             // LEFT
-            if (this.x == rangeStart) {
-                push();
-                translate(nDist, 0, 0);
-                fill(this.colors[4]);
-                rotateY(PI / 2);
-                plane(len - stickerOffset, len - stickerOffset, 2);
-                pop();
-            }
+            this.drawSticker('x', -1, this.colors[4]);
 
             // RIGHT
-            if (this.x == rangeEnd) {
-                push();
-                translate(pDist, 0, 0);
-                fill(this.colors[5]);
+            this.drawSticker('x', 1, this.colors[5]);
+
+            pop();
+        }
+    }
+
+    drawSticker(axis, coord, color) {
+        if (this[axis] == coord) {
+            // drawing vars
+            let radius = len / 2 + 1
+            let size = len - stickerOffset;
+
+            // blank translation vecotr
+            let t = createVector(0, 0, 0);
+
+            push();
+
+            // adjusts and executes the translation
+            t[axis] = coord * radius;
+            translate(t);
+
+            fill(color);
+
+            // does the rotation 
+            if (axis == 'x') {
                 rotateY(PI / 2);
-                plane(len - stickerOffset, len - stickerOffset, 2);
-                pop();
+            } else if (axis == 'y') {
+                rotateX(PI / 2);
             }
 
+            // draws
+            plane(size, size, 2);
+
+            // resets the matrix
             pop();
         }
     }
